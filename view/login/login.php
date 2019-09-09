@@ -58,11 +58,22 @@
 if (isset($_POST['submit'])){
     include_once('../../control/connect.php');
     $username = $_POST['username'];
-    $password = $_POST['psw'];
+
+// $password = password_hash($_POST['psw'],PASSWORD_DEFAULT);
+
+    $2y$10$tjkqkk8ymd8HTqYQvw6olOUhjYxATmXxUdYpeB8rn2J7gtDfcI3Te
+    $2y$10$mB7z7P4de2qpGdIBdiTXyejZN3d7sY1ImAlMz49P47i4rT9xdiaW
+    
+
     $sql = "SELECT * FROM `teacher_table` WHERE `T_Code` = '".$username."' AND `T_Pass` = '".$password."'";
-    $result = $conn->query($sql);
-    if($result -> num_rows > 0){
-        $row = $result->fetch_array();
+    echo $password;
+    
+    $query = $conn->query($sql);
+    $result = $query->fetch_assoc();
+    echo $result['T_Pass'];
+
+    if($query -> num_rows > 0){
+        $row = $query->fetch_array();
         // echo $row['name'];
         $_SESSION['id'] = $row['T_ID'];
         $_SESSION['username'] = $row['T_Code'];
@@ -97,9 +108,7 @@ if (isset($_POST['submit'])){
     <label for="psw" class='col-form-label col-sm-3' >Password</label>
    
     <div class="col-sm-9">
-    <form action="../../edit_profile.php" method="post">
-      <input type="password" class='form-control' id="psw" name="psw" >
-    </form>
+      <input type="password" class='form-control' id="psw" name="psw">
     <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required -->
     <!-- <label for="verified" class=' col-form-label col-md-15' style="color:Tomato;">* Must contain at least one number, one uppercase, lowercase letter and at least 8 or more characters</label> -->
     </div>

@@ -84,7 +84,7 @@
             <label for="confirmPassword" class='col-form-label col-sm-3'>Confirm Password:</label> 
         <div class="col-sm-9">    
             <input type="password" id="confirmPassword" name="confirmPassword" title="Confirm new password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  <?$encpwd = md5($psw) echo "$encpwd"?>>
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required  >
             <input type="checkbox" onclick="PassVisibity2()">Show Password
             <label for="verified" class=' col-form-label col-md-15' style="color:Tomato;">* Must contain at least one number, one uppercase, lowercase letter and at least 8 or more characters</label>
         </div>

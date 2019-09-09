@@ -17,11 +17,14 @@
         echo "<META HTTP-EQUIV='Refresh' CONTENT = '2;URL=edit_profile.php'>";
     }else {
         echo "Password matched";
+        
+        $confirmhash = password_hash("$confirmpassword",PASSWORD_DEFAULT);
+        
         session_start();
         include_once('./control/connect.php');
         $ID = $_SESSION['id'];
 	    $sql = "UPDATE teacher_table SET 
-			T_Pass = '".$_POST["txtPass"]."'
+			T_Pass = '".$confirmhash."'
 	 		WHERE T_ID = '".$strT_ID."' ";
     }
 	$query = mysqli_query($conn,$sql);
