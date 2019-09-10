@@ -59,14 +59,15 @@ if (isset($_POST['submit'])){
     include_once('../../control/connect.php');
     $username = $_POST['username'];
 
-// $password = password_hash($_POST['psw'],PASSWORD_DEFAULT);
 
-    $2y$10$tjkqkk8ymd8HTqYQvw6olOUhjYxATmXxUdYpeB8rn2J7gtDfcI3Te
-    $2y$10$mB7z7P4de2qpGdIBdiTXyejZN3d7sY1ImAlMz49P47i4rT9xdiaW
+    $pass_in_db = $_POST['psw'];
+
+
+
     
 
     $sql = "SELECT * FROM `teacher_table` WHERE `T_Code` = '".$username."' AND `T_Pass` = '".$password."'";
-    echo $password;
+  
     
     $query = $conn->query($sql);
     $result = $query->fetch_assoc();
