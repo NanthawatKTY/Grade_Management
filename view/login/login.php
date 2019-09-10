@@ -60,7 +60,7 @@ if (isset($_POST['submit'])){
     $username = $_POST['username'];
 
 
-    $pass_in_db = $_POST['psw'];
+    $password = md5($_POST['psw']);
 
 
 
@@ -89,6 +89,8 @@ if (isset($_POST['submit'])){
         echo "<script>";
         echo "alert('ข้อมูลผิดพลาด');";
         echo "</script>";
+        echo "$password";
+        return false;
     }
 }
 ?>

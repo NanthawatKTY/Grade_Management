@@ -18,7 +18,7 @@
     }else {
         echo "Password matched";
         
-        $confirmhash = password_hash("$confirmpassword",PASSWORD_DEFAULT);
+        $confirmhash = md5("$confirmpassword",PASSWORD_DEFAULT);
         
         session_start();
         include_once('./control/connect.php');
