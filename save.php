@@ -18,10 +18,8 @@
     }else {
         echo "Password matched";
         
-        $confirmhash = md5("$confirmpassword",PASSWORD_DEFAULT);
         
-        session_start();
-        include_once('./control/connect.php');
+
         $ID = $_SESSION['id'];
 	    $sql = "UPDATE teacher_table SET 
 			T_Pass = '".$confirmhash."'
