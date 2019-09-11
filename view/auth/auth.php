@@ -21,25 +21,37 @@ if (isset($_POST['submit'])){
     $result = $query->fetch_array();
     // echo 'dasdad';
     $checkstr = substr($result['ID_Card'],9);
-    echo $checkstr;
-    echo "_____________";
-    echo $check;
+    // echo $checkstr;
+    // print_r ($query);
+    // echo "_____________";
+    // echo $check;
+    echo $_SESSION['id'];
 
 
-    // return false;
+    //  return false;
+
+    // if($check == $checkstr){
+    //     echo "1";
+    // }else{
+    //     echo "GO $checkstr";
+    //     echo $_SESSION['id'];
+    // }
 
     if($check == $checkstr ){
+       
         header('location:../../index.php');
+    
         
     }
-        
-
     else {
         echo "<script>";
         echo "alert('ข้อมูลผิดพลาด');";
         echo "</script>";
         session_destroy();
-        header('location:../login/login.php');
+        
+        header('location:../../index.php');
+     
+   
     }
 }   
 

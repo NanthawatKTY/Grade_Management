@@ -59,8 +59,9 @@ if (isset($_POST['submit'])){
     include_once('../../control/connect.php');
     $username = $_POST['username'];
 
+    $password = md5($_POST['T_Pass']);
 
-    $password = $_POST['psw'];
+    // $password = $_POST['psw'];
 
 
 
@@ -71,18 +72,22 @@ if (isset($_POST['submit'])){
     
     $query = $conn->query($sql);
     $result = $query->fetch_assoc();
-    echo $result['T_Pass'];
+    // echo $result['T_Pass'];
 
     if($query -> num_rows > 0){
-        $row = $query->fetch_array();
+        // $row = $query->fetch_array();
         // echo $row['name'];
-        $_SESSION['id'] = $row['T_ID'];
-        $_SESSION['username'] = $row['T_Code'];
+        $_SESSION['id'] = $result['T_ID'];
+        $_SESSION['username'] = $result['T_Code'];
         // $_SESSION['user']= $row['username'];
-        $_SESSION['name'] = $row['T_Fname'];
-        // $_SESSION['img'] = $row['image'];
+        $_SESSION['name'] = $result['T_Fname'];
+        // $_SESSION['img'] = $result['image'];
         // $_SESSION['$status'] = $row['status'];
+        // print_r ($result);
+        // echo $_SESSION['name'];
+        // return false;
         header('location:../auth/auth.php');
+
         // header('location:index.php');
     }
     else {
@@ -90,7 +95,7 @@ if (isset($_POST['submit'])){
         echo "alert('ข้อมูลผิดพลาด');";
         echo "</script>";
         echo "$password";
-        return false;
+      
     }
 }
 ?>
@@ -111,7 +116,7 @@ if (isset($_POST['submit'])){
     <label for="psw" class='col-form-label col-sm-3' >Password</label>
    
     <div class="col-sm-9">
-      <input type="password" class='form-control' id="psw" name="psw">
+      <input type="password" class='form-control' id="T_Pass" name="T_Pass">
     <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required -->
     <!-- <label for="verified" class=' col-form-label col-md-15' style="color:Tomato;">* Must contain at least one number, one uppercase, lowercase letter and at least 8 or more characters</label> -->
     </div>
@@ -146,7 +151,7 @@ if (isset($_POST['submit'])){
 
 				
 <script>
-var myInput = document.getElementById("psw");
+var myInput = document.getElementById("T_Pass");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
@@ -209,7 +214,7 @@ myInput.onkeyup = function() {
 <!-- Password Visibilty-->
 <script>
 function myFunction() {
-  var x = document.getElementById("psw");
+  var x = document.getElementById("T_Pass");
   if (x.type === "password") {
     x.type = "text";
   } else {

@@ -18,7 +18,7 @@
     }else {
         echo "Password matched";
         
-        
+        $confirmhash = md5("$confirmpassword",PASSWORD_DEFAULT);
 
         $ID = $_SESSION['id'];
 	    $sql = "UPDATE teacher_table SET 

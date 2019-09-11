@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2019 at 11:48 AM
--- Server version: 10.3.16-MariaDB
--- PHP Version: 7.1.30
+-- Generation Time: Sep 11, 2019 at 11:06 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `teacher_table` (
   `T_ID` int(11) NOT NULL,
   `T_Code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `T_Pass` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `T_Pass` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `T_Fname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `T_Lname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ID_Card` varchar(13) COLLATE utf8_unicode_ci NOT NULL,
@@ -43,9 +43,9 @@ CREATE TABLE `teacher_table` (
 --
 
 INSERT INTO `teacher_table` (`T_ID`, `T_Code`, `T_Pass`, `T_Fname`, `T_Lname`, `ID_Card`, `T_Email`) VALUES
-(1, '55555', 'Asdf1234', 'Monday', 'Friday', '1520100104758', 'screenanywhere@gmail.com'),
-(2, '12345', '987654Tae', 'aa', 'bb', '1529900975816', 'nanthawat.tae123@Gmail.com'),
-(3, '5656', '99999', 'khkh', 'khkh', '1234567895468', 'user12@localhost');
+(1, '55555', '???#>1?gx?', 'Monday', 'Friday', '1520100104758', 'screenanywhere@gmail.com'),
+(2, '12345', 'de2048953e6ad22859ade59eb0413c70', 'aa', 'bb', '1529900975816', 'nanthawat.tae123@Gmail.com'),
+(3, '5656', 'ǣe?GI??h!H???P', 'khkh', 'khkh', '1234567895468', 'user12@localhost');
 
 --
 -- Indexes for dumped tables
