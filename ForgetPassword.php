@@ -1,92 +1,65 @@
-<form class="form-signin" method="POST">
-        <h2 class="form-signin-heading">Forgot Password</h2>
-        <div class="input-group">
-	  <span class="input-group-addon" id="basic-addon1">@</span>
-	  <input type="text" name="username" class="form-control" placeholder="Username" required>
-	</div>
-	<br />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Forgot Password</button>
-        <a class="btn btn-lg btn-primary btn-block" href="login.php">Login</a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>login</title>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-alpha p-4">
+        <!-- <a class="navbar-brand" href="login1.php">Software</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Features</a>
+            <a class="nav-item nav-link" href="#">Pricing</a>
+            <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </div>
+        </div> -->
+    </nav>
+  </head>
+
+  <style>
+   body {
+       background: URL(https://images.wallpaperscraft.com/image/mug_books_mood_128878_2560x1440.jpg);
+       background-attachment: fixed;
+       background-size : 100%
+   }
+  </style>
+
+
+
+
+  <body> <center>  
+  <form  name="forgotpassword" method = "POST" action = "Check_forgot.php" class="form-signin col-3 mt-5">
+  <img class="mb-4" src="../testt/128x128.png" alt="" width="200" height="200">
+  <h1 class="h3 mb-3 font-weight-normal"><font size="10" color="white">กรุณากรอกข้อมูลเพื่อยืนยัน</font></h1>
+  <label for="Code" class="sr-only">รหัสนักศึกษา/อาจารย์</label>
+  <input type="T_Code" name="T_Code" id="T_Code" class="form-control" placeholder="รหัสอาจารย์" required autofocus>
+  <label for="inputEmail" class="sr-only">Email</label>
+  <input type="Email" name="Email" id="Email" class="form-control mt-3" placeholder="Email" required>
+  <div class="checkbox mb-3">
+  </div>
+  <button class="btn btn-lg btn btn-primary btn-block" type="submit">Sign in</button>
+  <br>
+
+  <a href="./index.php">back</a>
 </form>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
-
-<link rel="stylesheet" href="styles.css" >
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<style>
-body {
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee;
-}
-
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
-.form-signin .form-signin-heading,
-.form-signin .checkbox {
-  margin-bottom: 10px;
-}
-.form-signin .checkbox {
-  font-weight: normal;
-}
-.form-signin .form-control {
-  position: relative;
-  height: auto;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  font-size: 16px;
-}
-.form-signin .form-control:focus {
-  z-index: 2;
-}
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-</style>
-<?php
-require_once('./control/connect.php');
-
-if(isset($_POST) & !empty($_POST)){
-	$username = mysqli_real_escape_string($conn, $_POST['username']);
-	$sql = "SELECT * FROM teacher_table WHERE T_Code = '$username'";
-	$res = mysqli_query($conn, $sql);
-	$count = mysqli_num_rows($res);
-	if($count == 1){
-		echo "Send email to user with password";
-	}else{
-		echo "User name does not exist in database";
-	}
-}
-
-$r = mysqli_fetch_assoc($res);
-$password = $r['T_Pass'];
-$to = $r['T_Email'];
-$subject = "Your Recovered Password";
-
-$message = "Please use this password to login " . $password;
-$headers = "From : vivek@codingcyber.com";
-if(mail($to, $subject, $message, $headers)){
-	echo "Your Password has been sent to your email id";
-}else{
-	echo "Failed to Recover your password, try again";
-}
-?>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+</html>
 

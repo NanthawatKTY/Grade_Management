@@ -18,19 +18,17 @@
     }else {
         echo "Password matched";
         
-        $confirmhash = md5("$confirmpassword",PASSWORD_DEFAULT);
+        $confirmhash = md5($confirmpassword);
 
         $ID = $_SESSION['id'];
-	    $sql = "UPDATE teacher_table SET 
-			T_Pass = '".$confirmhash."'
-	 		WHERE T_ID = '".$strT_ID."' ";
+	    $sql = "UPDATE teacher_table SET T_Pass = '".$confirmhash."' WHERE T_ID = '".$strT_ID."' ";
     }
 	$query = mysqli_query($conn,$sql);
 
 	if($query == TRUE) {
         session_destroy();
         echo "Uppdate successfully";
-        echo "<META HTTP-EQUIV='Refresh' CONTENT = '2;URL=./view/login/login.php'>";
+        echo "<META HTTP-EQUIV='Refresh' CONTENT = '2;URL=./index.php'>";
         
 	}else{
         echo "Uppdate Error";

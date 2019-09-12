@@ -3,19 +3,34 @@
 <title>ThaiCreate.Com Tutorials</title>
 </head>
 <body>
-<form name="form1" method="post" action="SendPassword.php">
-  Forgot your password? (Input Email)<br><br>
-  <table border="1" style="width: 300px">
-    <tbody>
-      <tr>
-        <td> &nbsp;Email</td>
-        <td><input name="txtEmail" type="text" id="txtEmail">
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <br>
-  <input type="submit" name="btnSubmit" value="Send Password">
+<form name="form1" method="post" action="Check_Forget.php">
+  Forgot your password?<br><br>
+
+  <form method="post" action="save.php">
+
+      <div class="form-group row ">
+          <label for="txtUser" class=' col-form-label col-sm-3'>Username :</label> 
+      <div class="col-sm-9">
+          <input type="text" id="txtUser" name="txtUser" title="Username" required>
+      </div>
+      </div>
+      <div class="form-group row">
+          <label for="newPassword" class='col-form-label col-sm-3'>Email :</label> 
+      <div class="col-sm-9">
+          <input type="email" id="txtEmail" name="txtEmail">
+        
+          
+      </div>
+      </div>
+
+  </div>
+  </div>
+</div>
+</div>
+
+<input type="submit" class='btn btn-success' value="Change Password" title="Change password" />
 </form>
+<button>Back</button>
+
 </body>
 </html>

@@ -39,7 +39,7 @@ if (isset($_POST['submit'])){
 
     if($check == $checkstr ){
        
-        header('location:../../index.php');
+        header('location:../../main.php');
     
         
     }

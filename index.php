@@ -1,118 +1,228 @@
-<?php
-session_start(); 
-require_once('./control/connect.php');
-// error_reporting(0);
-$sql = "SELECT * FROM center";
-$query = $conn->query($sql);
-// $sql_member = "SELECT * FROM `member` WHERE `status` LIKE 'teacher'";
-// $query_teacher = $conn->query($sql_member);
-// $result_teacher = $query_teacher->FETCH_ASSOC();
-// $status_teacher = $result_teacher['status'];
-
-// $sql_name = "SELECT `name` FROM `center` GROUP BY `name`";
-// $query_name = $conn->query($sql_name);
-
-// $sql_getid = "SELECT * FROM `center` WHERE `username` LIKE '".$_SESSION['user']."'";
-// $query_getid = $conn->query($sql_getid);
-// $result_getid = $query_getid->FETCH_ASSOC();
-
-// print_r($status_teacher);die;
-
-?>
-
+<?php session_start();
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
     <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <title>หน้าหลัก</title>
 </head>
 <body>
-<div class="container">
-<div class="mt-5"></div>
-<img src="" alt="">
-<img src="image/<?php echo $_SESSION['img'];?>" style=";width:250px;border: 3px solid #fff;border-radius: 50%; display: block;
-margin: auto;"   alt="">
-<!-- ชื่ออาจารย์  -->
-<div class="text-center"><a type="button" class="btn btn-primary btn-sm pr-5 pl-5 mb-3 mt-3 text-center" href = "./edit_profile.php">แก้ไขบัญชีผู้ใช้</a></div>
-<div class="text-center"><button type="button" class="btn btn-primary btn-sm pr-5 pl-5 mb-3 mt-3 text-center">สวัสดีคุณ <?php echo $_SESSION['name']; ?></button> <a class="btn btn-outline-dark btn-sm" href="./logout.php">Logout</a>
+<style>
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
 
-<!-- ค้นหา -->
-<form action="" method='GET' >
-<div class="row">
-      <div class="col-md-3"></div>
-      <select class="col-md-3 mr-2" name="txtKeyword_name" id="txtKeyword" class="form-control">
-        <option selected>เลือกปีการศึกษา...</option>
-        <?php while($result_name = $query_name->FETCH_ASSOC()) { ?>
-        <option><?php echo $result_name['name']?></option>
-        <?php }?>
-        </select> 
-      <select class="col-md-2" name="txtKeyword" id="txtKeyword" class="form-control">
-        <option selected>เลือกปีการศึกษา...</option>
-        <option>2560/1</option>
-        <option>2560/2</option>
-        <option>2561/1</option>
-        <option>2561/2</option>
-      </select> 
-     <?php echo "&nbsp;"?> <button type="submit" name='submit' class="btn btn-outline-success btn-sm">ค้นหา</button> 
-    </div>
+#message p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
 
-    </div>
-  </form>
-<br>
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
 
-<table class="table table-bordered text-center f14">
-  <thead>
-    <tr>
-      <th scope="col">รหัสรายวิชา/ชื่อรายวิชา</th>
-      <th scope="col">เช็คชื่อนักศึกษา</th>
-      <th>ลบ</th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php 
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+</style>
+
+
+
+
+
+
+<?php  
+if (isset($_POST['submit'])){
+    include_once('./control/connect.php');
+    $username = $_POST['username'];
+
+    $password = md5($_POST['T_Pass']);
+
+    // $password = $_POST['psw'];
+
+
+
+    
+
+    $sql = "SELECT * FROM `teacher_table` WHERE `T_Code` = '".$username."' AND `T_Pass` = '".$password."'";
   
-  $status = $_SESSION['$status'];
-  // print_r($status);
-  if($status != teacher) { ?>
-  <a href="insert_sj.php"><button type="button" class="btn btn-outline-dark mb-2">+ เพิ่มรายวิชา</button></a>
-  <tr> <?php 
-            if($_GET['txtKeyword']!= "") {
-              // $sql_txtKeyword_name = "SELECT * FROM member WHERE `name`= '".$_GET["txtKeyword_name"]."' ";
-              // print_r($_GET["txtKeyword_name"]);die
-              $sql_txtKeyword = "SELECT * FROM center WHERE `year`= '".$_GET["txtKeyword"]."' AND `name`= '".$_GET["txtKeyword_name"]."' ";
-              $query_txtKeyword = $conn->query($sql_txtKeyword);
-            while($result = $query_txtKeyword->fetch_assoc()){?>
-          <td><?php echo $result['name_sj'];?></td>
-          <td> <a href="table.php?id=<?php echo $result['id']?>" class="btn btn-sm btn-dark"> ✔ เช็คชื่อ</a> </td>
-          <td><a class="btn btn-danger btn-sm" href="JavaScript:if(confirm('Confirm Delete?') == true){window.location='del_center_save.php?id=<?php echo $result["id"];?>';}">ลบ</a></td>
-          </tr>
-     <?php }}?> 
+    
+    $query = $conn->query($sql);
+    $result = $query->fetch_assoc();
+    // echo $result['T_Pass'];
 
-  <?php  } else{ ?>
-          <tr>
-          <?php 
-            if($_GET['txtKeyword']!= "") {
-              $sql_txtKeyword = "SELECT * FROM center WHERE `year` = '".$_GET["txtKeyword"]."' AND `name`= '".$_GET["txtKeyword_name"]."' ";
-              $query_txtKeyword = $conn->query($sql_txtKeyword);
-            while($result = $query_txtKeyword->fetch_assoc()){?>
-          <td><?php echo $result['name_sj'];?></td>
-          <td> <a href="table.php?id=<?php echo $result['id']?>" class="btn btn-sm btn-dark"> ✔ เช็คชื่อ</a> </td>
-          </tr>
-     <?php 
-           }} }
-      ?> 
+    if($query -> num_rows > 0){
+        // $row = $query->fetch_array();
+        // echo $row['name'];
+        $_SESSION['id'] = $result['T_ID'];
+        $_SESSION['username'] = $result['T_Code'];
+        // $_SESSION['user']= $row['username'];
+        $_SESSION['name'] = $result['T_Fname'];
+        // $_SESSION['img'] = $result['image'];
+        // $_SESSION['$status'] = $row['status'];
+        // print_r ($result);
+        // echo $_SESSION['name'];
+        // return false;
+        header('location:./view/auth/auth.php');
 
-  </tbody>
-</table>
+        // header('location:index.php');
+    }
+    else {
+        echo "<script>";
+        echo "alert('ข้อมูลผิดพลาด');";
+        echo "</script>";
+        echo "$password";
+      
+    }
+}
+?>
+<div class="container mt-5">
+<div class="row">
+    <div class="col-xl-5 mx-auto">
+    <div class="card">
+    <form action="" method='POST' >
+    <div class="card-header text-center">เข้าสู่ระบบ</div>
+    <div class="card-body">
+    <div class="form-group row ">
+    <label for="username" class=' col-form-label col-sm-3'>Username</label>
+    <div class="col-sm-9">
+    <input type="text" class='form-control  ' id='username' name='username' required>
+    </div>
+    </div>
+    <div class="form-group row">
+    <label for="psw" class='col-form-label col-sm-3' >Password</label>
+   
+    <div class="col-sm-9">
+      <input type="password" class='form-control' id="T_Pass" name="T_Pass">
+    <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required -->
+    <!-- <label for="verified" class=' col-form-label col-md-15' style="color:Tomato;">* Must contain at least one number, one uppercase, lowercase letter and at least 8 or more characters</label> -->
+    </div>
+    </div>
+    <!-- <input type="password" value="FakePSW" id="myInput"><br><br> -->
+    <input type="checkbox" onclick="myFunction()">Show Password
 </div>
+<div class="card-footer text-center">
+    <input type="submit" name='submit' class='btn btn-success' value='เข้าสู่ระบบ'> <a class="ml-3" href="./reset-password.php">forget password?</a>
+</div>
+<div class="card-footer text-center">
+    <a class="ml-3" href="./Register_admin.php">Register</a>
+</div>
+</form>
+</div>
+</div>    
+</div>
+</div>
+
+
+
+
+
+
+
+
+<!-- SCRIPTS -->
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+				
+<script>
+var myInput = document.getElementById("T_Pass");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
+
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+}
+
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
+
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) {  
+    letter.classList.remove("invalid");
+    letter.classList.add("valid");
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+  }
+  
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) {  
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) {  
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+  
+  // Validate length
+  if(myInput.value.length >= 10) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+</script>
+
+
+<!-- Password Visibilty-->
+<script>
+function myFunction() {
+  var x = document.getElementById("T_Pass");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
 </body>
-<script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
-<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
-
 </html>
-
-
