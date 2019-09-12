@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
         integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../Style.css">
+    <link rel="stylesheet" href="node_modules\bootstrap\dist\css\bootstrap.css">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
@@ -23,7 +23,8 @@
         crossorigin="anonymous"></script>
 </head>
 <center>
-    
+    <a class="btn btn-success btn-sm m-1" href="./InsertAdForm.php">+ เพิ่มสมาชิก</a> 
+    <a class="btn btn-success btn-sm m-1" href="./index.php">กลับ</a> 
         <table class="table"style="height: 300px; width: 900px;">
         <thead>
           <tr>
