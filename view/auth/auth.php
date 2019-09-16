@@ -18,7 +18,7 @@ if (isset($_POST['submit'])){
 
     $sql = "SELECT * FROM `teacher_table` WHERE T_ID = '".$_SESSION['id']."' ";
     $query = $conn->query($sql);
-    $result = $query->fetch_array();
+    $result = $query->fetch_assoc();
     // echo 'dasdad';
     $checkstr = substr($result['ID_Card'],9);
     // echo $checkstr;
@@ -28,7 +28,8 @@ if (isset($_POST['submit'])){
     echo $_SESSION['id'];
 
 
-    //  return false;
+    // echo $check;
+    // echo $checkstr;
 
     // if($check == $checkstr){
     //     echo "1";
@@ -36,6 +37,8 @@ if (isset($_POST['submit'])){
     //     echo "GO $checkstr";
     //     echo $_SESSION['id'];
     // }
+
+    // return false;
 
     if($check == $checkstr ){
        
