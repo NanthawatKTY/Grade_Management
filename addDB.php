@@ -7,7 +7,7 @@ $TLname  = $_POST['txtLname'];
 $IDCard = $_POST['txtIDC'];
 $TEmail  = $_POST['txtEmail'];
 
-$check = "SELECT * FROM `teacher_table` WHERE T_Code='$Tcode' OR T_Fname='$TFname' OR T_Lname='$TLname' OR ID_Card = '$IDCard' ";
+$check = "SELECT * FROM `teacher_table` WHERE T_Code='$Tcode' OR ID_Card='$IDCard' ";
 $resultC = $conn->query($check);
 $row = $resultC->num_rows;
 // || เครื่องหมายหรือ
